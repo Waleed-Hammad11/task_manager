@@ -7,9 +7,13 @@ const TaskSchema = new mongoose.Schema({
         maxLength: [100, 'shouldn"t be more than 100 '],
         trim: true,
     },
+    description: {
+        type: String,
+        trim: true
+    },
     completed: {
         type: Boolean,
-        required: true,
+        default:false,
     },
     createdAt: {
         type: Date,

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import express from "express"
 import dotenv from "dotenv"
-import taskRoutes from "./routes/taskRoutes,js"
+import taskRoutes from "./routes/taskRoutes.js"
 const app = express()
 
 dotenv.config()
