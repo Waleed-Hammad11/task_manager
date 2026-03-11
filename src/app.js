@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import express from "express"
 import dotenv from "dotenv"
 import taskRoutes from "./routes/taskRoutes.js"
+import globalError from "./middlewares/errorMiddleware.js";
+
 const app = express()
 
 dotenv.config()
@@ -9,6 +11,14 @@ dotenv.config()
 app.use(express.json())
 
 app.use('/api/v1/tasks', taskRoutes);
+
+app.use((req, res, next) => {
+    const err = new Error(`can't find path ${req.originalUrl}`);
+    err.statusCode = 404;
+    next(err); 
+});
+
+app.use(globalError);
 
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>console.log("the server has been connected successfully"))
