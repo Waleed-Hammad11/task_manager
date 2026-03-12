@@ -2,7 +2,7 @@ import Task from "../models/task.js"
 import expressAsyncHandler from "express-async-handler"
 
 export const createTask=expressAsyncHandler(async(req,res)=>{
-    
+
         const task = await Task.create(req.body)
         res.status(200).json({
             success: true,
@@ -12,12 +12,33 @@ export const createTask=expressAsyncHandler(async(req,res)=>{
 })
 
 export const getAllTasks = expressAsyncHandler(async(req,res)=>{
-        const tasks = await Task.find()
-        res.status(200).json({
-            success: true,
-            count: tasks.length,
-            data: tasks
-        })
+    const queryObject = { ...req.query }
+    const excludeFields = ['page', 'sort', 'limit', 'fields'];
+    excludeFields.forEach((el) => delete queryObject[el]);
+    let mongooseQuery = Task.find(queryObject);
+
+    if (req.query.sort) {
+    const sortBy = req.query.sort.split(',').join(' ');
+    mongooseQuery = mongooseQuery.sort(sortBy);
+    
+    } else {
+    mongooseQuery = mongooseQuery.sort('-createdAt'); 
+    }
+
+
+    const page = req.query.page * 1 || 1; 
+    const limit = req.query.limit * 1 || 10; 
+    const skip = (page - 1) * limit;
+    mongooseQuery = mongooseQuery.skip(skip).limit(limit);
+
+    const tasks = await mongooseQuery;
+
+    res.status(200).json({
+        success: true,
+        results: tasks.length,
+        page,
+        data: tasks
+    });
 })
 
 export const updateTask = (async(req,res)=>{

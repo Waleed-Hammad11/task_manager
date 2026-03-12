@@ -3,12 +3,15 @@ import express from "express"
 import dotenv from "dotenv"
 import taskRoutes from "./routes/taskRoutes.js"
 import globalError from "./middlewares/errorMiddleware.js";
+import { setupSwagger } from "./config/swagger.js";
 
 const app = express()
 
 dotenv.config()
 
 app.use(express.json())
+
+setupSwagger(app);
 
 app.use('/api/v1/tasks', taskRoutes);
 
