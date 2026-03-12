@@ -57,13 +57,13 @@ POST /api/v1/tasks
 Creates a new task.
 
 Example Request Body:
-
+```json
 {
 "title": "Learn Node.js",
 "description": "Study Express and MongoDB",
 "completed": false
 }
-
+```
 ---
 
 ### Update Task
@@ -124,7 +124,7 @@ JWT_SECRET=MySuperSecretPassword123
 NODE_ENV=development
 
 ---
-
+```
 ## 📂 Project Structure
 
 task_manager
@@ -139,7 +139,7 @@ task_manager
 ├── app.js
 ├── server.js
 └── package.json
-
+```
 ---
 
 ## 🧪 Testing the API
