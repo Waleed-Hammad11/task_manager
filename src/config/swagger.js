@@ -6,7 +6,7 @@ const options = {
     info: {
         title: "Task Manager API",
         version: "1.0.0",
-        description: "توثيق شامل لنظام إدارة المهام - دفعة 2026",
+        description: "Task Manager",
     },
     servers: [
         {
@@ -22,5 +22,5 @@ const specs = swaggerJSDoc (options);
 
 export const setupSwagger = (app) => {
     app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
-    console.log("📖 Swagger Docs available at http://localhost:3000/api-docs");
+    console.log(" Swagger Docs available at http://localhost:3000/api-docs");
 };
