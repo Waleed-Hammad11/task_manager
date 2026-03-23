@@ -1,7 +1,7 @@
 import express from "express";
 import { createTask, deleteTask, getAllTasks, updateTask } from "../controllers/taskController.js";
-import validate from "../middlewares/validate.js";
-import createTaskSchema from "../utils/validators/taskValidator.js"
+import { createTaskValidator } from "../utils/validators/taskValidator.js"
+
 
 const router = express.Router();
 
@@ -36,7 +36,7 @@ const router = express.Router();
  */
 router.route('/')
     .get(getAllTasks)
-    .post(validate(createTaskSchema), createTask);
+    .post(createTaskValidator , createTask);
 
 /**
  * @swagger

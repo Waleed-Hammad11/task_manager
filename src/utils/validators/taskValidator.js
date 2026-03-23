@@ -17,6 +17,7 @@
 //     validatorMiddleware, 
 // ];
 import Joi from "joi";
+import validate from "../../middlewares/validate.js";
 
 const createTaskSchema = Joi.object({
     title: Joi.string()
@@ -38,4 +39,4 @@ const createTaskSchema = Joi.object({
         })
 });
 
-export default createTaskSchema
+export const createTaskValidator = validate(createTaskSchema)
