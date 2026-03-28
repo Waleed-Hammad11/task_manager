@@ -124,21 +124,42 @@ JWT_SECRET=MySuperSecretPassword123
 NODE_ENV=development
 
 ---
-```
 ## 📂 Project Structure
 
-task_manager
-│
-├── controllers
-├── models
-├── routes
-├── middlewares
-├── utils
-├── config
-│
-├── app.js
-├── server.js
-└── package.json
+```
+
+task manager
+├─ package-lock.json
+├─ package.json
+├─ README.md
+└─ src
+   ├─ app.js
+   ├─ config
+   │  └─ swagger.js
+   ├─ constants
+   │  ├─ httpStatusText.js
+   │  └─ messages.js
+   ├─ controllers
+   │  ├─ authController.js
+   │  └─ taskController.js
+   ├─ middlewares
+   │  ├─ authMiddleware.js
+   │  ├─ errorMiddleware.js
+   │  └─ validate.js
+   ├─ models
+   │  ├─ task.js
+   │  └─ user.js
+   ├─ routes
+   │  ├─ authRoutes.js
+   │  └─ taskRoutes.js
+   ├─ services
+   │  └─ authService.js
+   └─ utils
+      ├─ ApiResponse.js
+      └─ validators
+         ├─ authValidator.js
+         └─ taskValidator.js
+
 ```
 ---
 
@@ -174,4 +195,3 @@ Waleed Hammad
 
 GitHub:
 https://github.com/Waleed-Hammad11
-

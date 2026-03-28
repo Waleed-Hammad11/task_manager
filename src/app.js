@@ -25,11 +25,28 @@ app.use((req, res, next) => {
 
 app.use(globalError);
 
-mongoose.connect(process.env.MONGO_URI)
-.then(()=>console.log("the server has been connected successfully"))
-.catch(()=>console.log("the server crashed"))
+// mongoose.connect(process.env.MONGO_URI)
+// .then(()=>console.log("the server has been connected successfully"))
+// .catch((err)=>console.log(err.message))
 
-const PORT = process.env.PORT || 5000
-app.listen(PORT,()=>{
-    console.log(`the server is running on port ${PORT}`)
-})
+// const PORT = process.env.PORT || 5000
+// app.listen(PORT,()=>{
+//     console.log(`the server is running on port ${PORT}`)
+// })
+
+
+const startServer = async() =>{
+    try {
+        await mongoose.connect(process.env.MONGO_URI)
+        console.log("MongoDB connected successfully ");
+        const PORT = process.env.PORT || 5000;
+        app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT} `);
+    });
+    } catch (error) {
+        console.error("MongoDB connection failed ", err.message);
+        process.exit(1);
+    }
+}
+
+startServer()

@@ -1,7 +1,7 @@
 const globalError = (err, req, res, next) => {
     err.statusCode = err.statusCode || 500;
 
-    res.status(err.statusCode).json({
+    return res.status(err.statusCode).json({
         success: false,
         status: err.statusCode >= 400 && err.statusCode < 500 ? 'fail' : 'error',
         message: err.message,
